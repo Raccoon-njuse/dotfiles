@@ -50,6 +50,7 @@ tiling_drag modifier titlebar
 
 
 #快速启动软件
+
 # start a terminal
 bindsym $mod+Return exec alacritty
 bindsym $mod+backslash exec dolphin
@@ -233,6 +234,9 @@ exec_always --no-startup-id feh --bg-fill --randomize ~/Pictures/Wallpapers/*
 
 #picom
 exec_always --no-startup-id picom&
+
+# xmodmap
+exec_always --no-startup-id xmodmap ~/.xmodmap
 
 #dunst
 exec_always --no-startup-id dunst&
