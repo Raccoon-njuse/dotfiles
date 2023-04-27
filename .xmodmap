@@ -1,6 +1,8 @@
 clear lock
+clear mod1
+clear mod4
 keycode   8 =
-keycode   9 =
+keycode   9 = 
 keycode  10 = 1 exclam 1 exclam
 keycode  11 = 2 at 2 at
 keycode  12 = 3 numbersign 3 numbersign
@@ -55,7 +57,7 @@ keycode  60 = period greater period greater
 keycode  61 = slash question slash question
 keycode  62 = Shift_R NoSymbol Shift_R
 keycode  63 = KP_Multiply KP_Multiply KP_Multiply KP_Multiply KP_Multiply KP_Multiply XF86ClearGrab
-keycode  64 = Alt_L Meta_L Alt_L Meta_L
+keycode  64 = Super_L Meta_L Super_L Meta_L
 keycode  65 = space NoSymbol space
 keycode  66 = Escape NoSymbol Escape
 keycode  67 = F1 F1 F1 F1 F1 F1 XF86Switch_VT_1
@@ -124,7 +126,7 @@ keycode 129 = KP_Decimal KP_Decimal KP_Decimal KP_Decimal
 keycode 130 = Hangul NoSymbol Hangul
 keycode 131 = Hangul_Hanja NoSymbol Hangul_Hanja
 keycode 132 =
-keycode 133 = Super_L NoSymbol Super_L
+keycode 133 = Alt_L NoSymbol Alt_L
 keycode 134 = Super_R NoSymbol Super_R
 keycode 135 = Menu NoSymbol Menu
 keycode 136 = Cancel NoSymbol Cancel
@@ -247,3 +249,6 @@ keycode 252 = XF86BrightnessAuto NoSymbol XF86BrightnessAuto
 keycode 253 = XF86DisplayOff NoSymbol XF86DisplayOff
 keycode 254 = XF86WWAN NoSymbol XF86WWAN
 keycode 255 = XF86RFKill NoSymbol XF86RFKill
+
+add mod1 = Alt_R Alt_L
+add mod4 = Super_L Super_R
