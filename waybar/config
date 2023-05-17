@@ -1,0 +1,166 @@
+// -*- mode: json -*-
+
+{
+	"layer": "top",
+	"position": "top",
+	"modules-left": [
+		"custom/spaceleft",
+		"wlr/workspaces",
+		"custom/arr_spaceleftColor",
+	],
+	"modules-center": [
+		"custom/arr_day",
+		"clock#1",
+		"custom/arr_cal_left",
+		"clock#2",
+		"custom/arr_cal_right",
+		"clock#3",
+		"custom/arr_time"
+	],
+	"modules-right": [
+		"custom/arr_network",
+		"network",
+		"custom/arr_memory",
+		"memory",
+		"custom/arr_cpu",
+		"cpu",
+		"custom/arr_battery",
+		"battery",
+		"custom/arr_tray",
+		"tray",
+		"custom/block"
+	],
+	"custom/block": {
+		"format": " ",
+		"tooltip": false,
+		"on-click": ""
+	},
+	"custom/spaceleft": {
+		"format": "",
+		"tooltip": false,
+		"on-click": "~/scripts/randomwallpaper.sh",
+		"on-click-right": "~/scripts/favoritewallpaper.sh"
+	},
+	"custom/arr_spaceleftColor": {
+		"format": "",
+		"tooltip": false,
+	},"custom/arr_day": {
+		"format": "",
+		"tooltip": false,
+	},"custom/arr_cal_left": {
+		"format": "",
+		"tooltip": false,
+	},"custom/arr_cal_right": {
+		"format": "",
+		"tooltip": false,
+	},"custom/arr_time": {
+		"format": "",
+		"tooltip": false,
+	},"custom/arr_network": {
+		"format": "",
+		"tooltip": false,
+	},"custom/arr_memory": {
+		"format": "",
+		"tooltip": false,
+	},"custom/arr_cpu": {
+		"format": "",
+		"tooltip": false,
+	},"custom/arr_battery": {
+		"format": "",
+		"tooltip": false,
+	},"custom/arr_tray": {
+		"format": "",
+		"tooltip": false,
+	},
+
+
+    "wlr/workspaces": {
+        "format":"{icon}",
+        "on-click": "activate",
+        "format-icons":{
+            /*     ﱘ      󰟞             (nf-fa-bold)(h_square) ﬄ ﬐    (wikipedia)  */
+            /*󰫻󰬕󰰒󰰓󰰔*/
+            /*󰱯(nf-md-emoticon_devil)  󱈔*/
+
+            "1":"",
+            "2":"",
+            "3":"",
+            "4":" ",
+            "5":"󰱳 赛博日记",
+            "6":"",
+            "7":"",
+            "8":"",
+            "9":"",
+            "10":"",
+            "default": "",
+        },
+        "sort-by-number":true
+    },
+	"clock#1": {
+		"format": "{:%a}",
+		"tooltip": false
+	},
+	"clock#2": {
+		"format": "{:%H:%M}",
+		"tooltip": false
+	},
+	"clock#3": {
+		"format": "{:%m-%d}",
+		"tooltip": false
+	},
+	"network": {
+		"interval": 5,
+		"format-wifi": " {essid} {signalStrength}%",
+		"format-ethernet": "󰌘 {ifname}: {ipaddr}/{cidr}",
+		"format-disconnected": "⚠Disconnected",
+		"tooltip": false
+        },
+
+	"pulseaudio": {
+		"format": "{icon} {volume:2}%",
+		"format-bluetooth": "{icon}  {volume}%",
+		"format-muted": "MUTE",
+		"format-icons": {
+			"headphones": "",
+			"default": [
+				"",
+				""
+			]
+		},
+		"scroll-step": 5,
+		"on-click": "pamixer -t",
+		"on-click-right": "pavucontrol"
+	},
+	"memory": {
+		"interval": 5,
+		"format": "Mem {}%"
+	},
+	"cpu": {
+		"interval": 5,
+		"format": "CPU{usage:2}%"
+	},
+	"battery": {
+		"states": {
+			"good": 95,
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "{icon} {capacity}%",
+		"format-icons": [
+			"",
+			"",
+			"",
+			"",
+			""
+		]
+	},
+	"disk": {
+		"interval": 5,
+		"format": "Disk {percentage_used:2}%",
+		"path": "/"
+	},
+	"tray": {
+		"icon-size": 16,
+		"spacing": 10
+	}
+}
