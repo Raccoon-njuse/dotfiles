@@ -165,6 +165,28 @@ function _negligible_strip_prompt_escapes() {
   print -r -- "${text//\%\%/%}"
 }
 
+function _negligible_display_width() {
+  emulate -L zsh
+  setopt multibyte
+
+  local text="$1" char width=0 i
+  for (( i = 1; i <= ${#text}; i++ )); do
+    char="${text[i]}"
+    case "$char" in
+      [$'\u0300'-$'\u036f'$'\ufe00'-$'\ufe0f'])
+        ;;
+      [$'\u1100'-$'\u115f'$'\u2329'$'\u232a'$'\u2e80'-$'\ua4cf'$'\uac00'-$'\ud7a3'$'\uf900'-$'\ufaff'$'\ufe10'-$'\ufe19'$'\ufe30'-$'\ufe6f'$'\uff00'-$'\uff60'$'\uffe0'-$'\uffe6'])
+        (( width += 2 ))
+        ;;
+      *)
+        (( width += 1 ))
+        ;;
+    esac
+  done
+
+  print -r -- "$width"
+}
+
 function _negligible_git_segment() {
   command git rev-parse --is-inside-work-tree &>/dev/null || return 0
 
@@ -283,7 +305,7 @@ function _negligible_right_prompt() {
 }
 
 function _negligible_first_line() {
-  local prompt_path git_segment left right left_plain right_plain columns spaces padding
+  local prompt_path git_segment left right left_plain right_plain left_width right_width columns usable_columns spaces padding
   prompt_path="$(_negligible_prompt_text "${(%):-%~}")"
   git_segment="$(_negligible_git_segment)"
   left="%F{cyan}$(_negligible_os_icon)%f%F{cyan} ${prompt_path} %f${git_segment}"
@@ -296,10 +318,13 @@ function _negligible_first_line() {
 
   left_plain="$(_negligible_strip_prompt_escapes "$left")"
   right_plain="$(_negligible_strip_prompt_escapes "$right")"
+  left_width="$(_negligible_display_width "$left_plain")"
+  right_width="$(_negligible_display_width "$right_plain")"
   columns="${COLUMNS:-80}"
+  usable_columns=$(( columns > 1 ? columns - 1 : columns ))
 
-  if (( ${#left_plain} + ${#right_plain} + 1 < columns )); then
-    spaces=$(( columns - ${#left_plain} - ${#right_plain} ))
+  if (( left_width + right_width + 1 < usable_columns )); then
+    spaces=$(( usable_columns - left_width - right_width ))
     padding="$(printf "%${spaces}s" "")"
     print -r -- "${left}${padding}${right}"
   else
